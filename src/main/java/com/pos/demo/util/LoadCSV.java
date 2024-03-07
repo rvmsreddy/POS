@@ -19,6 +19,11 @@ import org.springframework.stereotype.Component;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 
+/**
+ * This class has logic to load Brand and Tool data.
+ * 
+ * @version 1.0
+ */
 @Component
 public class LoadCSV {
 
@@ -27,10 +32,15 @@ public class LoadCSV {
 	@Autowired
 	private ResourceLoader resourceLoader;
 
+	// This is to load CSV file. Usually this would be reading from a table in a
+	// database.
+	//
 	public List<List<String>> loadCSV(String fileName) {
 
 		List<List<String>> records = new ArrayList<List<String>>();
 		Resource resource = resourceLoader.getResource("classpath:" + fileName);
+
+		logger.info("Loading Sheets");
 
 		try {
 			InputStream is = resource.getInputStream();
@@ -51,7 +61,6 @@ public class LoadCSV {
 			e.printStackTrace();
 		}
 
-		// logger.info(records.toString());
 		return records;
 	}
 }

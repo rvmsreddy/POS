@@ -15,6 +15,10 @@ import java.util.GregorianCalendar;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * This class has logic for all calculations required for this assignment.
+ * @version 1.0
+*/
 public class Calculations {
 
 	// logger
@@ -36,6 +40,7 @@ public class Calculations {
 	// closest weekday
 	// (if Sat, then Friday before, if Sunday, then Monday after)
 	// Labor Day - First Monday in September
+	//TODO - This is complex logic. Still few parts are not coded.
 	public static Integer calculateChargeDays(Date checkoutDate, Date dueDate, Integer rentalDays, String weekendCharge,
 			String holidayCharge) {
 
@@ -92,6 +97,7 @@ public class Calculations {
 		return Double.valueOf(decfor.format(preDiscountCharge - discountAmount));
 	}
 
+	//Checks wether given date is in between two dates
 	public static boolean between(Date date, Date dateStart, Date dateEnd) {
 		if (date != null && dateStart != null && dateEnd != null) {
 			if (date.after(dateStart) && date.before(dateEnd)) {
@@ -103,6 +109,7 @@ public class Calculations {
 		return false;
 	}
 
+	//get first Monday in September
 	public static Date firstMondayinSeptember(int year) {
 		ZoneId defaultZoneId = ZoneId.systemDefault();
 
@@ -112,7 +119,9 @@ public class Calculations {
 				curr.with(TemporalAdjusters.firstInMonth(DayOfWeek.MONDAY)).atStartOfDay(defaultZoneId).toInstant());
 		return date;
 	}
-
+	
+	
+	//get working days between two dates
 	public static int getWorkingDaysBetweenTwoDates(Date startDate, Date endDate) {
 		Calendar startCal = Calendar.getInstance();
 		startCal.setTime(startDate);

@@ -1,5 +1,6 @@
 package com.pos.demo.util;
 
+//placeholder for all constants
 public final class Constants {
 
 	// Error Messages
